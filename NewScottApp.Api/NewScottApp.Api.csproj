@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Base.Api\Base.Api.csproj" />
+    <ProjectReference Include="..\NewScottApp.Application\NewScottApp.Application.csproj" />
+  </ItemGroup>
+
+</Project>
