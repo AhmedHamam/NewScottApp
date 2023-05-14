@@ -1,12 +1,8 @@
 ﻿using Base.API.Controllers;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting.Internal;
-using NewScottApp.Application.Commands.ForgetPassword;
-using NewScottApp.Application.Commands.Login;
 
 namespace NewScottApp.Api.Controllers
 {
@@ -20,30 +16,30 @@ namespace NewScottApp.Api.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
-        #region Commands
-        [AllowAnonymous]
-        [HttpPost("register")]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
-        public async Task<ActionResult<string>> RegisterUser(LoginCommand command)
-        {
-            return Ok(await Mediator.Send(command, CancellationToken));
-        }
+        //#region Commands
+        //[AllowAnonymous]
+        //[HttpPost("register")]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+        //public async Task<ActionResult<string>> RegisterUser(LoginCommand command)
+        //{
+        //    return Ok(await Mediator.Send(command, CancellationToken));
+        //}
 
 
-        [AllowAnonymous]
-        [HttpPost("forget-password")]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
-        public async Task<ActionResult<string>> ForgetPassword(ForgetPasswordCommand command)
-        {
-            return Ok(await Mediator.Send(command, CancellationToken));
-        }
+        //[AllowAnonymous]
+        //[HttpPost("forget-password")]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+        //public async Task<ActionResult<string>> ForgetPassword(ForgetPasswordCommand command)
+        //{
+        //    return Ok(await Mediator.Send(command, CancellationToken));
+        //}
 
 
-        #endregion
+        //#endregion
 
         [HttpPost("upload")]
         public async Task<IActionResult> Upload(IFormFile file)

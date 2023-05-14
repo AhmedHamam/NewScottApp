@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using NewScottApp.Domain.Domains.User;
-using NewScottApp.Infrastructure;
 using NewScottApp.Setup.Configuration.IdentityConfiguration;
 using NewScottApp.Setup.Constants;
 using NewScottApp.Setup.CurrentUser;
@@ -33,10 +31,10 @@ public static class ServiceCollectionExtension
                 .RequireAuthenticatedUser().Build());
         });
 
-        services.AddIdentityCore<ApplicationUser>()
-            .AddRoles<Role>()
-            .AddEntityFrameworkStores<IdentityDatabaseContext>()
-            .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider);
+        //services.AddIdentityCore<ApplicationUser>()
+        //    .AddRoles<Role>()
+        //    .AddEntityFrameworkStores<IdentityDatabaseContext>()
+        //    .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider);
 
         services.Configure<IdentityOptions>(options =>
         {

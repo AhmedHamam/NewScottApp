@@ -14,4 +14,9 @@
     <ProjectReference Include="..\Base.Domain\Base.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Domains\" />
+    <Folder Include="Enums\" />
+  </ItemGroup>
+
 </Project>

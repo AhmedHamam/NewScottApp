@@ -6,10 +6,9 @@ using Base.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.FileProviders;
 using NewScottApp.Application;
-using NewScottApp.Infrastructure;
-using NewScottApp.Helpers;
-using NewScottApp.Setup;
 using NewScottApp.Getway.Helpers;
+using NewScottApp.Infrastructure;
+using NewScottApp.Setup;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,8 +49,8 @@ builder.Services.AddExceptionHandling();
 
 #region Identity Solution
 
-builder.Services.AddScoped<IdentityDatabaseContext>();
-builder.Services.AddHealthChecks().AddDbContextCheck<IdentityDatabaseContext>();
+//builder.Services.AddScoped<IdentityDatabaseContext>();
+//builder.Services.AddHealthChecks().AddDbContextCheck<IdentityDatabaseContext>();
 builder.Services.AddIdentitySetup(builder.Configuration);
 builder.Services.AddIdentityApplication();
 builder.Services.AddIdentityInfrastructure(builder.Configuration);

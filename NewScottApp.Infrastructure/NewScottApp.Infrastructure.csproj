@@ -16,4 +16,8 @@
     <ProjectReference Include="..\NewScottApp.Domain\NewScottApp.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configurations\" />
+  </ItemGroup>
+
 </Project>

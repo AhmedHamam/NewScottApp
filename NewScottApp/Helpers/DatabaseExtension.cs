@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using NewScottApp.Domain.Domains.User;
-using NewScottApp.Infrastructure;
-
-namespace NewScottApp.Getway.Helpers;
+﻿namespace NewScottApp.Getway.Helpers;
 
 /// <summary>
 /// Extensions helpers method for database
@@ -16,8 +11,8 @@ public static class DatabaseExtension
     /// <param name="scope"></param>
     public static async Task MigrateDatabase(this IServiceScope scope)
     {
-        var identityDbContext = scope.ServiceProvider.GetRequiredService<IdentityDatabaseContext>();
-        await identityDbContext.Database.MigrateAsync();
+        //var identityDbContext = scope.ServiceProvider.GetRequiredService<IdentityDatabaseContext>();
+        //await identityDbContext.Database.MigrateAsync();
     }
 
     /// <summary>
@@ -25,8 +20,8 @@ public static class DatabaseExtension
     /// <param name="scope"></param>
     public static async Task SeedDatabase(this IServiceScope scope)
     {
-        var identityDbContext = scope.ServiceProvider.GetRequiredService<IdentityDatabaseContext>();
-        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-        await IdentityDbContextSeed.SeedDataAsync(identityDbContext, userManager);
+        //var identityDbContext = scope.ServiceProvider.GetRequiredService<IdentityDatabaseContext>();
+        //var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+        //await IdentityDbContextSeed.SeedDataAsync(identityDbContext, userManager);
     }
 }
