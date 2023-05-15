@@ -2,16 +2,15 @@
 
 namespace Base.Domain.CommonModels
 {
-    public class BaseEntity<T> : ISoftDelete<T>
+    public class BaseEntity : ISoftDelete
     {
-        public T Id { get; private set; }
         public bool IsDeleted { get; private set; }
-        public DateTimeOffset? DeletedOn { get; private set; }
-        public T DeletedBy { get; private set; }
-        public void MarkAsDeleted(T deletedBy)
+        public DateTimeOffset? DeletedDate { get; private set; }
+        public string DeletedBy { get; private set; }
+        public void MarkAsDeleted(string deletedBy)
         {
             IsDeleted = true;
-            DeletedOn = DateTime.UtcNow;
+            DeletedDate = DateTime.UtcNow;
             DeletedBy = deletedBy;
         }
 

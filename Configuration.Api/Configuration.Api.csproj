@@ -9,6 +9,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Base.Api\Base.Api.csproj" />
     <ProjectReference Include="..\Configuration.Application\Configuration.Application.csproj" />
+    <ProjectReference Include="..\Configuration.Reprisotry\Configuration.Reprisotry.csproj" />
+    <ProjectReference Include="..\NewScotApp.Shared\NewScotApp.Shared.csproj" />
   </ItemGroup>
 
 </Project>

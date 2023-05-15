@@ -1,9 +1,9 @@
 ﻿namespace Base.Domain.CommonInterfaces
 {
-    public interface ICreatedAuditableEntity<T>
+    public interface ICreatedAuditableEntity
     {
-        public T CreatedBy { get; }
-        public DateTimeOffset CreatedOn { get; }
-        public void MarkAsCreated(T createdBy);
+        public string CreatedBy { get; }
+        public DateTimeOffset CreatedDate { get; }
+        public void MarkAsCreated(string createdBy);
     }
 }

@@ -14,7 +14,7 @@ namespace Base.Infrastructure.Extensions
             foreach (var entityType in builder.Model.GetEntityTypes())
             {
                 //other automated configurations left out
-                if (typeof(ISoftDelete<int>).IsAssignableFrom(entityType.ClrType))
+                if (typeof(ISoftDelete).IsAssignableFrom(entityType.ClrType))
                 {
                     entityType.AddSoftDeleteQueryFilter();
                 }
@@ -32,12 +32,12 @@ namespace Base.Infrastructure.Extensions
             if (filter == null) return;
             entityData.SetQueryFilter((LambdaExpression)filter);
 
-            entityData.AddIndex(entityData.FindProperty(nameof(ISoftDelete<int>.IsDeleted)) ??
+            entityData.AddIndex(entityData.FindProperty(nameof(ISoftDelete.IsDeleted)) ??
                                 throw new InvalidOperationException());
         }
 
         private static LambdaExpression GetSoftDeleteFilter<TEntity>()
-            where TEntity : class, ISoftDelete<int>
+            where TEntity : class, ISoftDelete
         {
             Expression<Func<TEntity, bool>> filter = x => !x.IsDeleted;
             return filter;

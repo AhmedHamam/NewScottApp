@@ -1,9 +1,9 @@
 ﻿namespace Base.Domain.CommonInterfaces
 {
-    public interface IIsActive<T>
+    public interface IIsActive
     {
         public bool IsActive { get; }
-        public void MarkAsActive(T activatedBy);
-        public void MarkAsNotActive(T deactivatedBy);
+        public void MarkAsActive(string activatedBy);
+        public void MarkAsNotActive(string deactivatedBy);
     }
 }

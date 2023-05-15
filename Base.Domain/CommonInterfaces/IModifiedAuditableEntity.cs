@@ -1,9 +1,10 @@
 ﻿namespace Base.Domain.CommonInterfaces
 {
-    public interface IModifiedAuditableEntity<T>
+    public interface IModifiedAuditableEntity
     {
-        public T ModifiedBy { get; }
-        public DateTimeOffset ModifiedOn { get; }
-        public void MarkAsModified(T modifiedBy);
+        public string UpdatedBy { get; }
+        public DateTimeOffset UpdatedDate { get; }
+        public bool IsUpdated { get; }
+        public void MarkAsUpdated(string modifiedBy);
     }
 }

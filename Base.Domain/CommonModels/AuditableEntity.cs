@@ -2,25 +2,28 @@
 
 namespace Base.Domain.CommonModels
 {
-    public class AuditableEntity<T> : BaseEntity<T>,
-        ICreatedAuditableEntity<T>, IModifiedAuditableEntity<T>
+    public class AuditableEntity : BaseEntity,
+        ICreatedAuditableEntity, IModifiedAuditableEntity
     {
-        public DateTimeOffset CreatedOn { get; private set; }
+        public string CreatedBy { get; private set; }
+        public DateTimeOffset CreatedDate { get; private set; }
 
-        public T CreatedBy { get; private set; }
-        public DateTimeOffset ModifiedOn { get; private set; }
-        public T ModifiedBy { get; private set; }
+        public string UpdatedBy { get; private set; }
+        public DateTimeOffset UpdatedDate { get; private set; }
 
-        public void MarkAsCreated(T createdBy)
+        public bool IsUpdated { get; private set; }
+
+        public void MarkAsCreated(string createdBy)
         {
             CreatedBy = createdBy;
-            CreatedOn = DateTime.UtcNow;
+            CreatedDate = DateTime.UtcNow;
         }
 
-        public void MarkAsModified(T modifiedBy)
+        public void MarkAsUpdated(string updatedBy)
         {
-            ModifiedBy = modifiedBy;
-            ModifiedOn = DateTime.UtcNow;
+            UpdatedBy = updatedBy;
+            UpdatedDate = DateTime.UtcNow;
+            IsUpdated = true;
         }
     }
 }

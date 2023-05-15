@@ -1,5 +1,4 @@
 ﻿using Base.Domain.CommonInterfaces;
-using Base.Extensions;
 using Base.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -12,17 +11,17 @@ namespace Base.Infrastructure.Persistence
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private const string UserId = "sub";
-        private readonly Func<IHttpContextAccessor, int?>? _getUserId;
+        private readonly Func<IHttpContextAccessor, string?>? _getUserId;
 
         public ApplicationDbContext(IHttpContextAccessor httpContextAccessor,
-            Func<IHttpContextAccessor, int?>? getUserId = null)
+            Func<IHttpContextAccessor, string?>? getUserId = null)
         {
             _httpContextAccessor = httpContextAccessor;
             _getUserId = getUserId;
         }
 
         public ApplicationDbContext(DbContextOptions options, IHttpContextAccessor httpContextAccessor,
-            Func<IHttpContextAccessor, int?>? getUserId = null) : base(options)
+            Func<IHttpContextAccessor, string?>? getUserId = null) : base(options)
         {
             _httpContextAccessor = httpContextAccessor;
             _getUserId = getUserId;
@@ -31,13 +30,13 @@ namespace Base.Infrastructure.Persistence
 
         #region Save Changes
 
-        public async Task<int> SaveChangesAsync(int userId, CancellationToken cancellationToken = new())
+        public async Task<int> SaveChangesAsync(string userId, CancellationToken cancellationToken = new())
         {
             CheckAndUpdateEntities(userId);
             return await base.SaveChangesAsync(cancellationToken);
         }
 
-        public int SaveChanges(int userId)
+        public int SaveChanges(string userId)
         {
             CheckAndUpdateEntities(userId);
             return base.SaveChanges();
@@ -45,14 +44,14 @@ namespace Base.Infrastructure.Persistence
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
         {
-            var id = _getUserId?.Invoke(_httpContextAccessor) ?? GetClaimValue(_httpContextAccessor, UserId).ToIntOrNull();
+            var id = _getUserId?.Invoke(_httpContextAccessor) ?? GetClaimValue(_httpContextAccessor, UserId);
             CheckAndUpdateEntities(id);
             return await base.SaveChangesAsync(cancellationToken);
         }
 
         public override int SaveChanges()
         {
-            var id = _getUserId?.Invoke(_httpContextAccessor) ?? GetClaimValue(_httpContextAccessor, UserId).ToIntOrNull();
+            var id = _getUserId?.Invoke(_httpContextAccessor) ?? GetClaimValue(_httpContextAccessor, UserId);
             CheckAndUpdateEntities(id);
             return base.SaveChanges();
         }
@@ -71,19 +70,19 @@ namespace Base.Infrastructure.Persistence
 
         #region Helper Methods
 
-        public void CheckAndUpdateEntities(int? userId)
+        public void CheckAndUpdateEntities(string? userId)
         {
             ChangeTracker
-                .Entries<ICreatedAuditableEntity<int?>>()
+                .Entries<ICreatedAuditableEntity>()
                 .Where(e => e.State == EntityState.Added)
                 .ToList().ForEach(entry => { entry.Entity.MarkAsCreated(userId); });
             ChangeTracker
-                .Entries<IModifiedAuditableEntity<int?>>()
+                .Entries<IModifiedAuditableEntity>()
                 .Where(e => e.State == EntityState.Modified)
-                .ToList().ForEach(entry => { entry.Entity.MarkAsModified(userId); });
+                .ToList().ForEach(entry => { entry.Entity.MarkAsUpdated(userId); });
 
             ChangeTracker
-                .Entries<ISoftDelete<int?>>()
+                .Entries<ISoftDelete>()
                 .Where(e => e.State is EntityState.Added or EntityState.Deleted)
                 .ToList().ForEach(entry =>
                 {
@@ -97,7 +96,7 @@ namespace Base.Infrastructure.Persistence
                 });
         }
 
-        private static string GetClaimValue(IHttpContextAccessor accessor, string key)
+        private static string? GetClaimValue(IHttpContextAccessor accessor, string key)
         {
             var user = accessor?.HttpContext?.User;
             if (user?.Identity is null || !user.Identity.IsAuthenticated) return null;

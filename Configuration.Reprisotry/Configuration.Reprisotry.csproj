@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="CommandsRepositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Base.Infrastructure\Base.Infrastructure.csproj" />
+    <ProjectReference Include="..\Configuration.Domain\Configuration.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

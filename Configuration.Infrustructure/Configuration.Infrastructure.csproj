@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Configuration.Reprisotry\Configuration.Reprisotry.csproj" />
+  </ItemGroup>
+
 </Project>

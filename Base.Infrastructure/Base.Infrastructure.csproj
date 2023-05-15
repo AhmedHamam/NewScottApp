@@ -21,6 +21,7 @@
 	  </PackageReference>
     <ProjectReference Include="..\Base.Domain\Base.Domain.csproj" />
     <ProjectReference Include="..\Base.Extensions\Base.Extensions.csproj" />
+    <ProjectReference Include="..\NewScotApp.Shared\NewScotApp.Shared.csproj" />
   </ItemGroup>
 
 </Project>

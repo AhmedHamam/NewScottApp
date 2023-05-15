@@ -1,11 +1,11 @@
 ﻿namespace Base.Domain.CommonInterfaces
 {
-    public interface ISoftDelete<T>
+    public interface ISoftDelete
     {
         public bool IsDeleted { get; }
-        public DateTimeOffset? DeletedOn { get; }
-        public T DeletedBy { get; }
-        public void MarkAsDeleted(T deletedBy);
+        public DateTimeOffset? DeletedDate { get; }
+        public string DeletedBy { get; }
+        public void MarkAsDeleted(string deletedBy);
         public void MarkAsNotDeleted();
     }
 }
