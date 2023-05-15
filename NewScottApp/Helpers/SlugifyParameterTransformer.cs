@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace NewScottApp.Getway.Helpers;
+namespace NewScotApp.Getway.Helpers;
 
 public class SlugifyParameterTransformer : IOutboundParameterTransformer
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Text;
 
-namespace NewScottApp.Application
+namespace NewScotApp.Application
 {
 
     public static class IEnumerableExtensions

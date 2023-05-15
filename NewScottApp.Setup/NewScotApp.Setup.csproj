@@ -12,8 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Base.Api\Base.Api.csproj" />
-    <ProjectReference Include="..\NewScottApp.Domain\NewScottApp.Domain.csproj" />
-    <ProjectReference Include="..\NewScottApp.Infrastructure\NewScottApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\NewScottApp.Domain\NewScotApp.Domain.csproj" />
+    <ProjectReference Include="..\NewScottApp.Infrastructure\NewScotApp.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

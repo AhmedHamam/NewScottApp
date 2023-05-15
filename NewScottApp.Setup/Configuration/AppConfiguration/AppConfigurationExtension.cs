@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace NewScottApp.Setup.Configuration.AppConfiguration;
+namespace NewScotApp.Setup.Configuration.AppConfiguration;
 
 public static class AppConfigurationExtension
 {

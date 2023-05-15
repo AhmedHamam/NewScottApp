@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http;
 
-namespace NewScottApp.Setup.CurrentUser;
+namespace NewScotApp.Setup.CurrentUser;
 
 public static class CurrentUser
 {

@@ -1,4 +1,4 @@
-﻿namespace Configuration.Infrustructure
+﻿namespace Configuration.Infrastructure
 {
     public class Class1
     {

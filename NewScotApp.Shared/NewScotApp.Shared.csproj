@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Base.Api\Base.Api.csproj" />
-    <ProjectReference Include="..\NewScottApp.Application\NewScottApp.Application.csproj" />
-  </ItemGroup>
-
 </Project>

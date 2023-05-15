@@ -1,5 +1,4 @@
-﻿
-namespace NewScottApp.Setup.CurrentUser
+﻿namespace NewScotApp.Setup.CurrentUser
 {
     public static class ClaimKeys
     {

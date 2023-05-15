@@ -1,4 +1,4 @@
-﻿namespace NewScottApp.Getway.Helpers;
+﻿namespace NewScotApp.Getway.Helpers;
 
 /// <summary>
 /// Extensions helpers method for database
@@ -9,19 +9,16 @@ public static class DatabaseExtension
     /// 
     /// </summary>
     /// <param name="scope"></param>
-    public static async Task MigrateDatabase(this IServiceScope scope)
+    public static Task MigrateDatabase(this IServiceScope scope)
     {
-        //var identityDbContext = scope.ServiceProvider.GetRequiredService<IdentityDatabaseContext>();
-        //await identityDbContext.Database.MigrateAsync();
+        return Task.CompletedTask;
     }
 
     /// <summary>
     /// </summary>
     /// <param name="scope"></param>
-    public static async Task SeedDatabase(this IServiceScope scope)
+    public static Task SeedDatabase(this IServiceScope scope)
     {
-        //var identityDbContext = scope.ServiceProvider.GetRequiredService<IdentityDatabaseContext>();
-        //var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-        //await IdentityDbContextSeed.SeedDataAsync(identityDbContext, userManager);
+        return Task.CompletedTask;
     }
 }

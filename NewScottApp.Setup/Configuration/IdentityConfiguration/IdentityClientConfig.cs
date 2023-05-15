@@ -1,4 +1,4 @@
-namespace NewScottApp.Setup.Configuration.IdentityConfiguration;
+namespace NewScotApp.Setup.Configuration.IdentityConfiguration;
 
 public class IdentityClientConfig
 {

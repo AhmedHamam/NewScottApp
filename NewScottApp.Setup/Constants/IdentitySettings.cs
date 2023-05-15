@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using NewScottApp.Setup.Configuration.IdentityConfiguration;
+using NewScotApp.Setup.Configuration.IdentityConfiguration;
 
-namespace NewScottApp.Setup.Constants;
+namespace NewScotApp.Setup.Constants;
 
 public static class IdentitySettings
 {

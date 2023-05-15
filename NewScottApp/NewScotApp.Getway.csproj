@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NewScottApp.Api\NewScottApp.Api.csproj" />
-    <ProjectReference Include="..\NewScottApp.Setup\NewScottApp.Setup.csproj" />
+    <ProjectReference Include="..\NewScottApp.Api\NewScotApp.Api.csproj" />
+    <ProjectReference Include="..\NewScottApp.Setup\NewScotApp.Setup.csproj" />
   </ItemGroup>
 
 </Project>

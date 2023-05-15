@@ -5,10 +5,10 @@ using Base.Application;
 using Base.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.FileProviders;
-using NewScottApp.Application;
-using NewScottApp.Getway.Helpers;
-using NewScottApp.Infrastructure;
-using NewScottApp.Setup;
+using NewScotApp.Application;
+using NewScotApp.Getway.Helpers;
+using NewScotApp.Infrastructure;
+using NewScotApp.Setup;
 
 var builder = WebApplication.CreateBuilder(args);
 

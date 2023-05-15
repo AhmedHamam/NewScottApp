@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using NewScottApp.Setup.Configuration.IdentityConfiguration;
-using NewScottApp.Setup.Constants;
-using NewScottApp.Setup.CurrentUser;
+using NewScotApp.Setup.Configuration.IdentityConfiguration;
+using NewScotApp.Setup.Constants;
+using NewScotApp.Setup.CurrentUser;
 using System.Security.Claims;
 
-namespace NewScottApp.Setup;
+namespace NewScotApp.Setup;
 
 public static class ServiceCollectionExtension
 {

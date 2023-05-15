@@ -1,4 +1,4 @@
-﻿namespace NewScottApp.Infrastructure
+﻿namespace NewScotApp.Infrastructure
 {
     //public class IdentityDbContextFactory : IDesignTimeDbContextFactory<IdentityDatabaseContext>
     //{

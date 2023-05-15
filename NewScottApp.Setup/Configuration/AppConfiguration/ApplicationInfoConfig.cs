@@ -1,4 +1,4 @@
-﻿namespace NewScottApp.Setup.Configuration.AppConfiguration;
+﻿namespace NewScotApp.Setup.Configuration.AppConfiguration;
 
 public class ApplicationInfoConfig
 {

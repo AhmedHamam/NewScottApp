@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace NewScottApp.Setup.Configuration.IdentityConfiguration;
+namespace NewScotApp.Setup.Configuration.IdentityConfiguration;
 
 public static class IdentityConfigurationExtension
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace NewScottApp.Infrastructure
+namespace NewScotApp.Infrastructure
 {
     public static class DependencyInjection
     {

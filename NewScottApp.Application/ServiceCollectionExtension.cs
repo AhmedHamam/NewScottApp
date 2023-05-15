@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace NewScottApp.Application
+namespace NewScotApp.Application
 {
     public static class ServiceCollectionExtension
     {
