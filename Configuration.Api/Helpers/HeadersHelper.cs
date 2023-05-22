@@ -4,7 +4,8 @@ using NewScotApp.Shared.Enums;
 
 namespace Configuration.Api.Helpers
 {
-    internal class HeadersHelper
+    //TODO: All class need to refactore 
+    public class HeadersHelper
     {
         internal static bool GetLanguageHeader(HttpRequest request)
         {

@@ -1,4 +1,5 @@
-﻿using Configuration.Reprisotry.QueriesRepositories;
+﻿using Configuration.Infrastructure.Repositories.QueriesRepositories;
+using Configuration.Reprisotry.QueriesRepositories;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,7 @@ namespace Configuration.Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
             services.AddScoped<IAlertClassificationRepository, AlertClassificationRepository>();
+            services.AddScoped<ICountryQueryRepository, CountryQueryRepository>();
             return services;
         }
     }

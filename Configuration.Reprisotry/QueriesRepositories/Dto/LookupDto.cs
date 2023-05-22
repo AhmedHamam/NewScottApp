@@ -1,6 +1,6 @@
-﻿namespace Configuration.Reprisotry.QueriesRepositories
+﻿namespace Configuration.Reprisotry.QueriesRepositories.Dto
 {
-    public class LookupViewModel
+    public class LookupDto
     {
         public int Id { get; set; }
         public string Text { get; set; }

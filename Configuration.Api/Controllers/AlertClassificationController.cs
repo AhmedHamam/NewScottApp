@@ -2,15 +2,15 @@
 using Configuration.Api.Helpers;
 using Configuration.Application.Queries.ListNotification;
 using MediatR;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Configuration.Api.Controllers
 {
-    //[Route("api/[controller]")]
-    //[ApiController]
-    [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/[controller]")]
+    [EnableCors("ApiCorsPolicy")]
+    [ApiController]
+    [Route("api/[controller]")]
     public class AlertClassificationController : BaseController
     {
 

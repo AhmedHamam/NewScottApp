@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Base.Domain\Base.Domain.csproj" />
+    <ProjectReference Include="..\NewScotApp.Shared\NewScotApp.Shared.csproj" />
+    <ProjectReference Include="..\NewScottApp.Setup\NewScotApp.Setup.csproj" />
   </ItemGroup>
 
 </Project>

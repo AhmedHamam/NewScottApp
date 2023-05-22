@@ -1,6 +1,7 @@
 ﻿using Base.Infrastructure.Persistence;
 using Base.Infrastructure.Repository;
 using Configuration.Domain.Alert;
+using Configuration.Reprisotry.QueriesRepositories.Dto;
 
 namespace Configuration.Reprisotry.QueriesRepositories
 {
@@ -10,11 +11,11 @@ namespace Configuration.Reprisotry.QueriesRepositories
         {
         }
 
-        public List<LookupViewModel> List(bool isEnglish)
+        public List<LookupDto> List(bool isEnglish)
         {
             try
             {
-                return Find(e => !e.IsDeleted).Select(e => new LookupViewModel
+                return Find(e => !e.IsDeleted).Select(e => new LookupDto
                 {
                     Id = e.AlertClassificationID,
                     Text = isEnglish || string.IsNullOrEmpty(e.AlertClassificationArabicName) ? e.AlertClassificationEnglishName : e.AlertClassificationArabicName,
@@ -31,6 +32,6 @@ namespace Configuration.Reprisotry.QueriesRepositories
     }
     public interface IAlertClassificationRepository
     {
-        List<LookupViewModel> List(bool isEnglish);
+        List<LookupDto> List(bool isEnglish);
     }
 }

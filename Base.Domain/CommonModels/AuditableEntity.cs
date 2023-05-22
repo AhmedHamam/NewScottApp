@@ -6,7 +6,7 @@ namespace Base.Domain.CommonModels
         ICreatedAuditableEntity, IModifiedAuditableEntity
     {
         public string CreatedBy { get; private set; }
-        public DateTimeOffset CreatedDate { get; private set; }
+        public DateTimeOffset CreationDate { get; private set; }
 
         public string UpdatedBy { get; private set; }
         public DateTimeOffset UpdatedDate { get; private set; }
@@ -16,7 +16,7 @@ namespace Base.Domain.CommonModels
         public void MarkAsCreated(string createdBy)
         {
             CreatedBy = createdBy;
-            CreatedDate = DateTime.UtcNow;
+            CreationDate = DateTime.UtcNow;
         }
 
         public void MarkAsUpdated(string updatedBy)

@@ -8,7 +8,7 @@ public static class CurrentUser
 
     #region Logged In User Claims
 
-    public static Guid? Id => GetClaimValue(ClaimKeys.Id) is not null ? Guid.Parse(GetClaimValue(ClaimKeys.Id)!) : null;
+    public static string? Id => GetClaimValue(ClaimKeys.Id) is not null ? (GetClaimValue(ClaimKeys.Id)!) : null;
     public static string? Email => GetClaimValue(ClaimKeys.Email);
 
     //  public static List<RolesEnum> Roles => GetRoles();
