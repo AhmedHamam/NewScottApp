@@ -8,7 +8,7 @@ namespace Configuration.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<City> builder)
         {
-            builder.ToTable("City", "ConfigurationSchema");
+            builder.ToTable("City", "dbo");
         }
     }
 }

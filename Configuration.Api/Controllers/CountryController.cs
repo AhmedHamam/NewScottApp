@@ -9,9 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Configuration.Api.Controllers
 {
-    [EnableCors("ApiCorsPolicy")]
     [ApiController]
-    [Route("api/[controller]")]
+    [EnableCors("ApiCorsPolicy")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     internal class CountryController : BaseController
     {
         public CountryController(ISender mediator) : base(mediator)
@@ -23,12 +24,12 @@ namespace Configuration.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CountryDto>))]
-        public IActionResult List()
+        public async Task<ActionResult<IEnumerable<CountryDto>>> ListcountryAsync()
         {
             ListCountries countries = new ListCountries(HeadersHelper.GetLanguageHeader(Request));
-            var result = Mediator.Send(countries);
-            return Ok(result);
+            return Ok(await Mediator.Send(countries));
         }
+
 
         [HttpGet]
         [Route("ListAll")]

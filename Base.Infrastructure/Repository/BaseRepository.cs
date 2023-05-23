@@ -5,7 +5,9 @@ using System.Linq.Expressions;
 
 namespace Base.Infrastructure.Repository
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
+    where TEntity : class // TEntity must be a reference type
+
     {
         private readonly ApplicationDbContext _context;
         private readonly DbSet<TEntity> _set;

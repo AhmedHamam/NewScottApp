@@ -1,7 +1,8 @@
 ﻿using System.Linq.Expressions;
 namespace Base.Infrastructure.Repository
 {
-    public interface IBaseRepository<TEntity> where TEntity : class
+    public interface IBaseRepository<TEntity>
+        where TEntity : class
     {
         TEntity? GetById(object id);
         Task<TEntity?> GetByIdAsync(object id, CancellationToken cancellationToken = default);

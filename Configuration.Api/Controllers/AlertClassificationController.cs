@@ -35,7 +35,6 @@ namespace Configuration.Api.Controllers
                 ListNotification notification = new ListNotification();
                 notification.isEnglish = HeadersHelper.GetLanguageHeader(Request);
                 return Ok(Mediator.Send(notification));
-                //throw new NotImplementedException();
 
             }
             catch (Exception ex)
@@ -44,6 +43,8 @@ namespace Configuration.Api.Controllers
                 return Problem(ex.Message);
             }
         }
+
+
 
 
     }

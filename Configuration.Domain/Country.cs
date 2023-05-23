@@ -17,16 +17,17 @@ namespace Configuration.Domain
             CountryID = countryID;
             CountryNameArabic = countryNameArabic;
             CountryNameEnglish = countryNameEnglish;
+            City = new HashSet<City>();
         }
 
 
         public int CountryID { get; private set; }
-        public string CountryNameArabic { get; private set; }
-        public string CountryNameEnglish { get; private set; }
+        public string? CountryNameArabic { get; private set; }
+        public string? CountryNameEnglish { get; private set; }
         public int? Code { get; private set; }
-        public string Iso { get; private set; }
-        public string Nicename { get; private set; }
-        public string Iso3 { get; private set; }
+        public string? Iso { get; private set; }
+        public string? Nicename { get; private set; }
+        public string? Iso3 { get; private set; }
         public Int16? Numcode { get; private set; }
         public int? Phonecode { get; private set; }
         public bool IsSaudi { get; private set; } = false;
@@ -115,4 +116,6 @@ namespace Configuration.Domain
             MarkAsUpdated(CurrentUser.Id);
         }
     }
+
+
 }

@@ -6,15 +6,17 @@ namespace Configuration.Infrastructure
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddOrderInfrastructure(this IServiceCollection services,
+        public static IServiceCollection AddConfigurationsInfrastructure(this IServiceCollection services,
     IConfiguration configuration)
         {
-            services.AddScoped<ConfigurationDbContext>();
-
-            services.AddDbContext<ConfigurationDbContext>(options =>
+            //services.AddTransient<ApplicationDbContext, ConfigurationsDbContext>();
+            //services.AddScoped<IAlertClassificationRepository, AlertClassificationRepository>();
+            //services.AddScoped<ICountryCommandRepository, CountryCommandRepository>();
+            //services.AddScoped<ICountryQueryRepository, CountryQueryRepository>();
+            services.AddDbContext<ConfigurationsDbContext>(options =>
                 options.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection"),
-                    b => b.MigrationsAssembly(typeof(ConfigurationDbContext).Assembly.FullName)));
+                    b => b.MigrationsAssembly(typeof(ConfigurationsDbContext).Assembly.FullName)), ServiceLifetime.Transient);
 
             return services;
         }

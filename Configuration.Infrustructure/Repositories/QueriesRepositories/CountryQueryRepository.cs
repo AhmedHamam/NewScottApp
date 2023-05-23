@@ -1,5 +1,4 @@
-﻿using Base.Infrastructure.Persistence;
-using Base.Infrastructure.Repository;
+﻿using Base.Infrastructure.Repository;
 using Configuration.Domain;
 using Configuration.Reprisotry.QueriesRepositories;
 using Configuration.Reprisotry.QueriesRepositories.Dto;
@@ -9,7 +8,7 @@ namespace Configuration.Infrastructure.Repositories.QueriesRepositories
 {
     public class CountryQueryRepository : BaseRepository<Country>, ICountryQueryRepository
     {
-        public CountryQueryRepository(ApplicationDbContext context) : base(context)
+        public CountryQueryRepository(ConfigurationsDbContext context) : base(context)
         {
         }
 

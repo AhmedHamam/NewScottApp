@@ -8,7 +8,7 @@ namespace Configuration.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Country> builder)
         {
-            builder.ToTable("Country", "ConfigurationSchema");
+            builder.ToTable("Country", "dbo");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Configuration.Infrastructure.Repositories.QueriesRepositories;
+﻿using Configuration.Infrastructure.Repositories;
+using Configuration.Infrastructure.Repositories.QueriesRepositories;
 using Configuration.Reprisotry.QueriesRepositories;
 using FluentValidation;
 using MediatR;
@@ -14,8 +15,10 @@ namespace Configuration.Application
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
-            services.AddScoped<IAlertClassificationRepository, AlertClassificationRepository>();
+
             services.AddScoped<ICountryQueryRepository, CountryQueryRepository>();
+            services.AddTransient<IAlertClassificationRepository, AlertClassificationRepository>();
+
             return services;
         }
     }

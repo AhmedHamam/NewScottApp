@@ -7,13 +7,13 @@ using System.Reflection;
 
 namespace Configuration.Infrastructure
 {
-    public class ConfigurationDbContext : ApplicationDbContext
+    public class ConfigurationsDbContext : ApplicationDbContext
     {
-        public ConfigurationDbContext(IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
+        public ConfigurationsDbContext(IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
         {
         }
 
-        public ConfigurationDbContext(DbContextOptions<ConfigurationDbContext> options, IHttpContextAccessor httpContextAccessor)
+        public ConfigurationsDbContext(DbContextOptions<ConfigurationsDbContext> options, IHttpContextAccessor httpContextAccessor)
             : base(options, httpContextAccessor, accessor => CurrentUser.Id)
         {
         }

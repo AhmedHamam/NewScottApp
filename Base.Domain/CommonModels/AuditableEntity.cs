@@ -6,12 +6,12 @@ namespace Base.Domain.CommonModels
         ICreatedAuditableEntity, IModifiedAuditableEntity
     {
         public string CreatedBy { get; private set; }
-        public DateTimeOffset CreationDate { get; private set; }
+        public DateTime? CreationDate { get; private set; }
 
-        public string UpdatedBy { get; private set; }
-        public DateTimeOffset UpdatedDate { get; private set; }
+        public string? UpdatedBy { get; private set; }
+        public DateTime? UpdatedDate { get; private set; }
 
-        public bool IsUpdated { get; private set; }
+        public bool? IsUpdated { get; private set; }
 
         public void MarkAsCreated(string createdBy)
         {

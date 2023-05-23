@@ -4,6 +4,7 @@ using Base.API.Services.Swagger;
 using Base.Application;
 using Base.Infrastructure;
 using Configuration.Application;
+using Configuration.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.FileProviders;
 using NewScotApp.Getway.Helpers;
@@ -54,6 +55,7 @@ builder.Services.AddExceptionHandling();
 builder.Services.AddIdentitySetup(builder.Configuration);
 builder.Services.AddIdentityApplication();
 builder.Services.AddIdentityInfrastructure(builder.Configuration);
+builder.Services.AddConfigurationsInfrastructure(builder.Configuration);
 
 #endregion
 

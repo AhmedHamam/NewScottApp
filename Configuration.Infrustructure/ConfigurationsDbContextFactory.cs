@@ -5,20 +5,20 @@ using Microsoft.Extensions.Configuration;
 
 namespace Configuration.Infrastructure
 {
-    public class ConfigurationsDbContextFactory : IDesignTimeDbContextFactory<ConfigurationDbContext>
+    public class ConfigurationsDbContextFactory : IDesignTimeDbContextFactory<ConfigurationsDbContext>
     {
-        public ConfigurationDbContext CreateDbContext(string[] args)
+        public ConfigurationsDbContext CreateDbContext(string[] args)
         {
             var configBuilder = new ConfigurationBuilder();
             configBuilder.AddJsonFile("appsettings.json");
             var config = configBuilder.Build();
             var connectionString = config.GetValue<string>("ConnectionStrings:DefaultConnection");
-            var optionsBuilder = new DbContextOptionsBuilder<ConfigurationDbContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<ConfigurationsDbContext>();
             optionsBuilder.UseSqlServer(connectionString);
 
             var httpContextAccessor = new HttpContextAccessor();
 
-            return new ConfigurationDbContext(optionsBuilder.Options, httpContextAccessor);
+            return new ConfigurationsDbContext(optionsBuilder.Options, httpContextAccessor);
         }
     }
 }
