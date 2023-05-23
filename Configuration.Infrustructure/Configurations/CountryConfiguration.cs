@@ -9,6 +9,8 @@ namespace Configuration.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Country> builder)
         {
             builder.ToTable("Country", "dbo");
+            builder.HasMany(x => x.City);
+
         }
     }
 }

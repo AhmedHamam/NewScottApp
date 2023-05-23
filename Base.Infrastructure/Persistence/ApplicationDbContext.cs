@@ -57,10 +57,18 @@ namespace Base.Infrastructure.Persistence
         }
 
         #endregion
-
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            foreach (var entityType in builder.Model.GetEntityTypes())
+            {
+                foreach (var property in entityType.GetProperties())
+                {
+                    if (property.ClrType == typeof(string))
+                    {
+                        property.SetMaxLength(255);
+                    }
+                }
+            }
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             base.OnModelCreating(builder);

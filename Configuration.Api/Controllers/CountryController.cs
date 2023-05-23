@@ -3,9 +3,11 @@ using Configuration.Api.Helpers;
 using Configuration.Application.Queries.Countries.List;
 using Configuration.Reprisotry.QueriesRepositories.Dto;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Configuration.Api.Controllers
 {
@@ -13,8 +15,9 @@ namespace Configuration.Api.Controllers
     [EnableCors("ApiCorsPolicy")]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    internal class CountryController : BaseController
+    public class CountryController : BaseController
     {
+        private readonly ILogger<CountryController> _logger;
         public CountryController(ISender mediator) : base(mediator)
         {
 
@@ -24,7 +27,7 @@ namespace Configuration.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CountryDto>))]
-        public async Task<ActionResult<IEnumerable<CountryDto>>> ListcountryAsync()
+        public async Task<ActionResult<IEnumerable<CountryDto>>> ListCountryAsync()
         {
             ListCountries countries = new ListCountries(HeadersHelper.GetLanguageHeader(Request));
             return Ok(await Mediator.Send(countries));
@@ -33,44 +36,23 @@ namespace Configuration.Api.Controllers
 
         [HttpGet]
         [Route("ListAll")]
-        public IActionResult ListAll()
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CountryDto>))]
+        public async Task<ActionResult<IEnumerable<CountryDto>>> ListAllCountryAsync()
         {
-            //try
-            //{
-            //    var result = _countryRepository.ListAll(HeadersHelper.GetLanguageHeader(Request));
-            //    if (result == null)
-            //        return Problem("");
-            //    return Ok(result);
-            //}
-            //catch (Exception ex)
-            //{
-            //    _logger.LogError(ex.Message);
-            //    return Problem(ex.Message);
-            //}
-            throw new NotImplementedException();
+            ListCountries countries = new ListCountries(HeadersHelper.GetLanguageHeader(Request));
+            return Ok(await Mediator.Send(countries));
         }
 
-        //[HttpGet]
-        //[Route("AllCountryWithChilds")]
-        //[Authorize]
-        //public ActionResult<List<ParentWithChildsLookup>> AllCountryWithChilds()
-        //{
-        //    try
-        //    {
-        //        var result = _countryRepository.GetCountiresWithCities(HeadersHelper.GetLanguageHeader(Request), out RepositoryOutput response);
-        //        if (result == null)
-        //        {
-        //            if (response.Code == RepositoryResponseStatus.Error || !response.Success)
-        //                return Problem();
-        //        }
-        //        return Ok(result);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError(ex.Message);
-        //        return Problem(ex.Message);
-        //    }
-        //}
+        [HttpGet]
+        [Route("AllCountryWithChilds")]
+        [Authorize]
+        public ActionResult<List<ParentWithChildsLookup>> AllCountryWithChilds()
+        {
+
+            throw new NotImplementedException();
+        }
 
 
         //[HttpGet]

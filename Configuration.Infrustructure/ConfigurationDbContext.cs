@@ -20,9 +20,11 @@ namespace Configuration.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
+
 
         public DbSet<Country> Countries => Set<Country>();
         public DbSet<City> Cities => Set<City>();

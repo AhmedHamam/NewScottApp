@@ -1,5 +1,6 @@
 ﻿using Base.Domain.CommonModels;
 using NewScotApp.Setup.CurrentUser;
+using System.ComponentModel.DataAnnotations;
 
 namespace Configuration.Domain
 {
@@ -17,7 +18,13 @@ namespace Configuration.Domain
         }
 
         public int CityID { get; private set; }
+
+        [Required, MaxLength(30), MinLength(5)]
+        [RegularExpression(@"^[\u0600-\u06FF\s]+$", ErrorMessage = "The {0} field must contain Arabic characters only.")]
         public string CityNameArabic { get; private set; }
+
+        [Required, MaxLength(30), MinLength(5)]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "The {0} field must contain English characters only.")]
         public string CityNameEnglish { get; private set; }
         public virtual Country? Country { get; private set; }
         public virtual Region? Region { get; private set; }

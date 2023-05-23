@@ -16,7 +16,7 @@ namespace Configuration.Infrastructure
             services.AddDbContext<ConfigurationsDbContext>(options =>
                 options.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection"),
-                    b => b.MigrationsAssembly(typeof(ConfigurationsDbContext).Assembly.FullName)), ServiceLifetime.Transient);
+                    b => b.MigrationsAssembly(typeof(ConfigurationsDbContext).Assembly.FullName)));
 
             return services;
         }

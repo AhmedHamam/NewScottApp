@@ -9,9 +9,9 @@ namespace Configuration.Api.Controllers
     [EnableCors("ApiCorsPolicy")]
     [ApiController]
     [Route("api/[controller]")]
-    internal class CityControlle : BaseController
+    public class CityController : BaseController
     {
-        public CityControlle(ISender mediator) : base(mediator)
+        public CityController(ISender mediator) : base(mediator)
         {
         }
     }

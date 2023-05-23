@@ -1,4 +1,7 @@
-﻿namespace NewScotApp.Getway.Helpers;
+﻿using Configuration.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+
+namespace NewScotApp.Getway.Helpers;
 
 /// <summary>
 /// Extensions helpers method for database
@@ -9,9 +12,18 @@ public static class DatabaseExtension
     /// 
     /// </summary>
     /// <param name="scope"></param>
-    public static Task MigrateDatabase(this IServiceScope scope)
+    public static async Task MigrateDatabase(this IServiceScope scope)
     {
-        return Task.CompletedTask;
+        var configurationsDbContext = scope.ServiceProvider.GetRequiredService<ConfigurationsDbContext>();
+        try
+        {
+            await configurationsDbContext.Database.MigrateAsync();
+        }
+        catch (Exception ex)
+        {
+
+
+        }
     }
 
     /// <summary>
