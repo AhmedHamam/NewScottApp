@@ -1,5 +1,8 @@
 ﻿using Base.API.Controllers;
 using Configuration.Api.Helpers;
+using Configuration.Application.Queries.Countries.AllCountryWithChilds;
+using Configuration.Application.Queries.Countries.AllExtentionNumbetCountries;
+using Configuration.Application.Queries.Countries.GetLoggedUserCountires;
 using Configuration.Application.Queries.Countries.List;
 using Configuration.Reprisotry.QueriesRepositories.Dto;
 using MediatR;
@@ -8,6 +11,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 
 namespace Configuration.Api.Controllers
 {
@@ -18,10 +22,11 @@ namespace Configuration.Api.Controllers
     public class CountryController : BaseController
     {
         private readonly ILogger<CountryController> _logger;
-        public CountryController(ISender mediator) : base(mediator)
+        public CountryController(ILogger<CountryController> logger, ISender mediator) : base(mediator)
         {
-
+            _logger = logger;
         }
+
         [Route("List")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -47,58 +52,42 @@ namespace Configuration.Api.Controllers
 
         [HttpGet]
         [Route("AllCountryWithChilds")]
-        [Authorize]
-        public ActionResult<List<ParentWithChildsLookup>> AllCountryWithChilds()
+        //[Authorize]
+        public async Task<ActionResult<List<ParentWithChildsLookup>>> AllCountryWithChilds()
         {
-
-            throw new NotImplementedException();
+            AllCountryWithChilds countries = new AllCountryWithChilds(HeadersHelper.GetLanguageHeader(Request));
+            return Ok(await Mediator.Send(countries));
         }
 
 
-        //[HttpGet]
-        //[Route("AllExtentionNumbetCountries")]
-        //public ActionResult<List<CountryViewModel>> AllExtentionNumbetCountries()
-        //{
-        //    try
-        //    {
-        //        var response = new RepositoryOutput();
-        //        var result = _countryRepository.ExtentionNumberCountries();
-        //        if (result == null)
-        //        {
-        //            if (response.Code == RepositoryResponseStatus.Error || !response.Success)
-        //                return Problem();
-        //        }
-        //        return Ok(result);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError(ex.Message);
-        //        return Problem(ex.Message);
-        //    }
-        //}
+        [HttpGet]
+        [Route("AllExtentionNumbetCountries")]
+        public async Task<ActionResult<List<CountryDto>>> AllExtentionNumbetCountries()
+        {
+            AllExtentionNumberCountries allExtention =
+                new AllExtentionNumberCountries();
+            return Ok(await Mediator.Send(allExtention));
 
-        //[HttpGet]
-        //[Route("GetLoggedUserCountires")]
-        //[Authorize]
-        //public ActionResult<List<ParentWithChildsLookup>> GetLoggedUserCountires()
-        //{
-        //    try
-        //    {
-        //        var response = new RepositoryOutput();
-        //        var result = _countryRepository.ListLoggedUserCountries(User.Identity as ClaimsIdentity, HeadersHelper.GetLanguageHeader(Request));
-        //        if (result == null)
-        //        {
-        //            if (response.Code == RepositoryResponseStatus.Error || !response.Success)
-        //                return Problem();
-        //        }
+        }
 
-        //        return Ok(result);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError(ex.Message);
-        //        return Problem(ex.Message);
-        //    }
-        //}
+        [HttpGet]
+        [Route("GetLoggedUserCountires")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CountryDto>))]
+        [Authorize]
+        public async Task<ActionResult<List<ParentWithChildsLookup>>> GetLoggedUserCountires()
+        {
+            //TODO Need to Implement and test after imlement authorization 
+            if (User is not null && User.Identity is not null)
+            {
+                var claims = User!.Identity! as ClaimsIdentity;
+                GetLoggedUserCountires userCountires =
+                    new GetLoggedUserCountires(claims!, isEnglish: HeadersHelper.GetLanguageHeader(Request));
+                return Ok(await Mediator.Send(userCountires));
+            }
+            else
+            { return BadRequest(); }
+        }
     }
 }
