@@ -1,5 +1,7 @@
 ﻿using Configuration.Infrastructure.Repositories;
+using Configuration.Infrastructure.Repositories.CommandsRepositories;
 using Configuration.Infrastructure.Repositories.QueriesRepositories;
+using Configuration.Reprisotry.CommandsRepositories;
 using Configuration.Reprisotry.QueriesRepositories;
 using FluentValidation;
 using MediatR;
@@ -17,6 +19,7 @@ namespace Configuration.Application
 
 
             services.AddScoped<ICountryQueryRepository, CountryQueryRepository>();
+            services.AddScoped<ICountryCommandRepository, CountryCommandRepository>();
             services.AddTransient<IAlertClassificationRepository, AlertClassificationRepository>();
 
             return services;

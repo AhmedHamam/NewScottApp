@@ -12,9 +12,8 @@ namespace Configuration.Domain
             City = new HashSet<City>();
         }
 
-        public Country(int countryID, string countryNameArabic, string countryNameEnglish)
+        public Country(string countryNameArabic, string countryNameEnglish)
         {
-            CountryID = countryID;
             CountryNameArabic = countryNameArabic;
             CountryNameEnglish = countryNameEnglish;
             City = new HashSet<City>();
@@ -28,7 +27,7 @@ namespace Configuration.Domain
         public string? Iso { get; private set; }
         public string? Nicename { get; private set; }
         public string? Iso3 { get; private set; }
-        public Int16? Numcode { get; private set; }
+        public int? Numcode { get; private set; }
         public int? Phonecode { get; private set; }
         public bool IsSaudi { get; private set; } = false;
         public int? ExtentionNumber { get; private set; }
@@ -51,22 +50,22 @@ namespace Configuration.Domain
             Code = code;
             MarkAsUpdated(CurrentUser.Id);
         }
-        public void SetIso(string iso)
+        public void SetIso(string? iso)
         {
             Iso = iso;
             MarkAsUpdated(CurrentUser.Id);
         }
-        public void SetNicename(string nicename)
+        public void SetNicename(string? nicename)
         {
             Nicename = nicename;
             MarkAsUpdated(CurrentUser.Id);
         }
-        public void SetIso3(string iso3)
+        public void SetIso3(string? iso3)
         {
             Iso3 = iso3;
             MarkAsUpdated(CurrentUser.Id);
         }
-        public void SetNumcode(Int16? numcode)
+        public void SetNumcode(int? numcode)
         {
             Numcode = numcode;
             MarkAsUpdated(CurrentUser.Id);

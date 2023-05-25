@@ -9,5 +9,6 @@ namespace Configuration.Infrastructure.Repositories.CommandsRepositories
         public CountryCommandRepository(ConfigurationsDbContext context) : base(context)
         {
         }
+
     }
 }

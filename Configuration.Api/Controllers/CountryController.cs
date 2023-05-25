@@ -1,5 +1,6 @@
 ﻿using Base.API.Controllers;
 using Configuration.Api.Helpers;
+using Configuration.Application.Commands.Countries.CreateCountry;
 using Configuration.Application.Queries.Countries.AllCountryWithChilds;
 using Configuration.Application.Queries.Countries.AllExtentionNumbetCountries;
 using Configuration.Application.Queries.Countries.GetLoggedUserCountires;
@@ -26,7 +27,7 @@ namespace Configuration.Api.Controllers
         {
             _logger = logger;
         }
-
+        #region Queries
         [Route("List")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -89,5 +90,20 @@ namespace Configuration.Api.Controllers
             else
             { return BadRequest(); }
         }
+        #endregion
+
+        #region Commands
+        [Route("create")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
+        public async Task<ActionResult<int>> CreateCountryAsync([FromBody] CreateCountryCommand createCountry)
+        {
+            return Ok(await Mediator.Send(createCountry));
+        }
+
+
+        #endregion
     }
 }
