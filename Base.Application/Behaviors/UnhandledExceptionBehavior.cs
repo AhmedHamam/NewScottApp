@@ -1,7 +1,7 @@
 using MediatR;
-using Serilog;
+using Microsoft.Extensions.Logging;
 
-namespace Base.Application.Behaviours;
+namespace Base.Application.Behaviors;
 
 /// <summary>
 /// MediatR pipeline behavior that handles unhandled exceptions in the request pipeline
@@ -13,9 +13,20 @@ namespace Base.Application.Behaviours;
 /// before being re-thrown, maintaining the original stack trace while providing
 /// detailed logging information for debugging purposes.
 /// </remarks>
-public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+public class UnhandledExceptionBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
+    private readonly ILogger<UnhandledExceptionBehavior<TRequest, TResponse>> _logger;
+
+    /// <summary>
+    /// Initializes a new instance of the UnhandledExceptionBehavior
+    /// </summary>
+    /// <param name="logger">The logger instance for this behavior</param>
+    public UnhandledExceptionBehavior(ILogger<UnhandledExceptionBehavior<TRequest, TResponse>> logger)
+    {
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    }
+
     /// <summary>
     /// Handles the request and catches any unhandled exceptions
     /// </summary>
@@ -36,10 +47,11 @@ public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavio
             var requestName = typeof(TRequest).Name;
             var requestType = typeof(TRequest).FullName;
 
-            Log.Error(ex, 
-                "Unhandled Exception for Request {RequestName} ({RequestType}) {@Request}",
+            _logger.LogError(ex,
+                "Application Request: Unhandled Exception for Request {Name} ({Type})\nException: {Exception}\nRequest: {@Request}",
                 requestName,
                 requestType,
+                ex.Message,
                 request);
 
             // Re-throw the original exception to maintain the stack trace

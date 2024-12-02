@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Base.Application.Behaviours;
+namespace Base.Application.Behaviors;
 
 /// <summary>
 /// MediatR pipeline behavior that handles cache invalidation for commands
@@ -19,18 +19,18 @@ namespace Base.Application.Behaviours;
 /// commands and their related queries are in parallel namespaces (e.g., 
 /// "Domain.Commands.UpdateUser" would invalidate cache for "Domain.Queries.*")
 /// </remarks>
-public class ResetCacheBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+public class ResetCacheBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IConfiguration _configuration;
 
     /// <summary>
-    /// Initializes a new instance of the ResetCacheBehaviour class
+    /// Initializes a new instance of the ResetCacheBehavior class
     /// </summary>
     /// <param name="httpContextAccessor">HTTP context accessor for accessing request-scoped services</param>
     /// <param name="configuration">Application configuration for Redis settings</param>
-    public ResetCacheBehaviour(IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
+    public ResetCacheBehavior(IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
     {
         _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));

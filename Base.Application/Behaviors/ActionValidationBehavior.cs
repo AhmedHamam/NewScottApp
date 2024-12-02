@@ -2,7 +2,7 @@ using Base.Application.Security;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 
-namespace Base.Application.Behaviours;
+namespace Base.Application.Behaviors;
 
 /// <summary>
 /// MediatR pipeline behavior that performs action-specific validation and authorization checks
@@ -16,18 +16,18 @@ namespace Base.Application.Behaviours;
 /// - Resource access validation
 /// - Custom business rule validation
 /// </remarks>
-public class ActionValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+public class ActionValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
     private readonly IEnumerable<IActionValidator<TRequest, TResponse>> _actionValidators;
     private readonly IHttpContextAccessor _accessor;
 
     /// <summary>
-    /// Initializes a new instance of the ActionValidationBehaviour class
+    /// Initializes a new instance of the ActionValidationBehavior class
     /// </summary>
     /// <param name="actionValidators">Collection of action validators for the request type</param>
     /// <param name="accessor">HTTP context accessor for handling validation responses</param>
-    public ActionValidationBehaviour(
+    public ActionValidationBehavior(
         IEnumerable<IActionValidator<TRequest, TResponse>> actionValidators,
         IHttpContextAccessor accessor)
     {
@@ -71,7 +71,7 @@ public class ActionValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<
     /// </summary>
     /// <param name="result">The validation result to handle</param>
     /// <returns>True if the pipeline should be aborted, false to continue</returns>
-    private async Task<bool> HandleValidationResult(ActionValidationResult result)
+    private async Task<bool> HandleValidationResult(ActionValidatorResult result)
     {
         switch (result.Status)
         {

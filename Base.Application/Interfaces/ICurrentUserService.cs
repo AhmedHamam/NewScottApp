@@ -45,4 +45,5 @@ public interface ICurrentUserService
     /// <param name="claimType">The type of claim to retrieve</param>
     /// <returns>The claim value if found, null otherwise</returns>
     string? GetClaimValue(string claimType);
+    Task<string> GetUserNameAsync(string userId);
 }

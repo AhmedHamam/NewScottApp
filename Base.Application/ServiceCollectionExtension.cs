@@ -1,4 +1,4 @@
-using Base.Application.Behaviours;
+using Base.Application.Behaviors;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,22 +16,22 @@ public static class ServiceCollectionExtension
     /// <returns>The IServiceCollection for chaining</returns>
     /// <remarks>
     /// This method registers the following pipeline behaviors in order:
-    /// 1. UnhandledExceptionBehaviour - Catches and handles unhandled exceptions
-    /// 2. ActionValidationBehaviour - Validates action-specific rules
-    /// 3. ValidationBehaviour - Validates request objects using FluentValidation
-    /// 4. PerformanceBehaviour - Monitors and logs slow-running requests
-    /// 5. CachingBehaviour - Implements response caching
-    /// 6. ResetCacheBehaviour - Handles cache invalidation
+    /// 1. UnhandledExceptionBehavior - Catches and handles unhandled exceptions
+    /// 2. ActionValidationBehavior - Validates action-specific rules
+    /// 3. ValidationBehavior - Validates request objects using FluentValidation
+    /// 4. PerformanceBehavior - Monitors and logs slow-running requests
+    /// 5. CachingBehavior - Implements response caching
+    /// 6. ResetCacheBehavior - Handles cache invalidation
     /// </remarks>
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         // Register MediatR pipeline behaviors in specific order
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ActionValidationBehaviour<,>));
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehaviour<,>));
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ResetCacheBehaviour<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ActionValidationBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ResetCacheBehavior<,>));
 
         return services;
     }

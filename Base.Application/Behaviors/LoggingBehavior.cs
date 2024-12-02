@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Serilog;
 using System.Security.Claims;
 
-namespace Base.Application.Behaviours;
+namespace Base.Application.Behaviors;
 
 /// <summary>
 /// Pre-processor behavior that logs incoming requests with user context
@@ -17,18 +17,18 @@ namespace Base.Application.Behaviours;
 /// - Request parameters
 /// - Timestamp
 /// </remarks>
-public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest> 
+public class LoggingBehavior<TRequest> : IRequestPreProcessor<TRequest> 
     where TRequest : notnull
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly ICurrentUserService _currentUserService;
 
     /// <summary>
-    /// Initializes a new instance of the LoggingBehaviour class
+    /// Initializes a new instance of the LoggingBehavior class
     /// </summary>
     /// <param name="httpContextAccessor">HTTP context accessor for user information</param>
     /// <param name="currentUserService">Service to get current user details</param>
-    public LoggingBehaviour(
+    public LoggingBehavior(
         IHttpContextAccessor httpContextAccessor,
         ICurrentUserService currentUserService)
     {

@@ -8,25 +8,25 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 
-namespace Base.Application.Behaviours;
+namespace Base.Application.Behaviors;
 
 /// <summary>
 /// MediatR pipeline behavior that implements caching for query requests
 /// </summary>
 /// <typeparam name="TRequest">The type of request being handled</typeparam>
 /// <typeparam name="TResponse">The type of response from the handler</typeparam>
-public class CachingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IConfiguration _configuration;
 
     /// <summary>
-    /// Initializes a new instance of the CachingBehaviour class
+    /// Initializes a new instance of the CachingBehavior class
     /// </summary>
     /// <param name="httpContextAccessor">HTTP context accessor for accessing request-scoped services</param>
     /// <param name="configuration">Application configuration for Redis settings</param>
-    public CachingBehaviour(IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
+    public CachingBehavior(IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
     {
         _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));

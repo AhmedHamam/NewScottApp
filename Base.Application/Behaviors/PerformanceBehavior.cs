@@ -1,9 +1,8 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Serilog;
 using System.Diagnostics;
 
-namespace Base.Application.Behaviours;
+namespace Base.Application.Behaviors;
 
 /// <summary>
 /// MediatR pipeline behavior that monitors request execution time and logs slow requests
@@ -14,7 +13,7 @@ namespace Base.Application.Behaviours;
 /// This behavior tracks the execution time of each request and logs a warning
 /// when requests take longer than the configured threshold (default: 500ms).
 /// </remarks>
-public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+public class PerformanceBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
     private readonly Stopwatch _timer;
@@ -22,10 +21,10 @@ public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequ
     private const int LongRunningThresholdMs = 500;
 
     /// <summary>
-    /// Initializes a new instance of the PerformanceBehaviour class
+    /// Initializes a new instance of the PerformanceBehavior class
     /// </summary>
     /// <param name="logger">Logger instance for the request type</param>
-    public PerformanceBehaviour(ILogger<TRequest> logger)
+    public PerformanceBehavior(ILogger<TRequest> logger)
     {
         _timer = new Stopwatch();
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -62,13 +61,6 @@ public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequ
                 var requestType = typeof(TRequest).FullName;
 
                 _logger.LogWarning(
-                    "Long running request detected. Request: {RequestName} ({RequestType}) took {ElapsedMilliseconds}ms. {@Request}",
-                    requestName,
-                    requestType,
-                    elapsedMilliseconds,
-                    request);
-
-                Log.Warning(
                     "Long running request detected. Request: {RequestName} ({RequestType}) took {ElapsedMilliseconds}ms. {@Request}",
                     requestName,
                     requestType,
