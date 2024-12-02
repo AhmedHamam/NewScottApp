@@ -1,11 +1,10 @@
 using Base.Application.Exceptions;
-using Base.Application.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Text.Json;
-using UnauthorizedAccessException = System.UnauthorizedAccessException;
+using UnauthorizedAccessException = Base.Application.Exceptions.UnauthorizedAccessException;
 using ValidationException = FluentValidation.ValidationException;
 
 namespace Base.Application.Middleware;
