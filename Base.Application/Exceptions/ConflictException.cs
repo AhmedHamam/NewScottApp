@@ -3,72 +3,72 @@ using System.Runtime.Serialization;
 namespace Base.Application.Exceptions;
 
 /// <summary>
-/// Exception thrown when a requested resource is not found
+/// Exception thrown when a conflict occurs while processing the request
 /// </summary>
 [Serializable]
-public class NotFoundException : ApplicationException
+public class ConflictException : ApplicationException
 {
     /// <summary>
-    /// Initializes a new instance of the NotFoundException class
+    /// Initializes a new instance of the ConflictException class
     /// </summary>
-    public NotFoundException()
-        : base("The requested resource was not found")
+    public ConflictException()
+        : base("A conflict occurred while processing the request")
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the NotFoundException class with a specified error message
+    /// Initializes a new instance of the ConflictException class with a specified error message
     /// </summary>
     /// <param name="message">The message that describes the error</param>
-    public NotFoundException(string message)
+    public ConflictException(string message)
         : base(message)
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the NotFoundException class with a specified error message
+    /// Initializes a new instance of the ConflictException class with a specified error message
     /// and a reference to the inner exception that is the cause of this exception
     /// </summary>
     /// <param name="message">The error message that explains the reason for the exception</param>
     /// <param name="innerException">The exception that is the cause of the current exception</param>
-    public NotFoundException(string message, Exception innerException)
+    public ConflictException(string message, Exception innerException)
         : base(message, innerException)
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the NotFoundException class with an entity name and identifier
+    /// Initializes a new instance of the ConflictException class with entity details
     /// </summary>
-    /// <param name="entityName">Name of the entity that was not found</param>
-    /// <param name="entityId">Identifier used to look for the entity</param>
-    public NotFoundException(string entityName, object entityId)
-        : base($"Entity \"{entityName}\" with identifier ({entityId}) was not found")
+    /// <param name="entityName">Name of the entity that caused the conflict</param>
+    /// <param name="conflictReason">The reason for the conflict</param>
+    public ConflictException(string entityName, string conflictReason)
+        : base($"A conflict occurred with entity '{entityName}': {conflictReason}")
     {
         EntityName = entityName;
-        EntityId = entityId?.ToString();
+        ConflictReason = conflictReason;
     }
 
     /// <summary>
-    /// Initializes a new instance of the NotFoundException class with serialized data
+    /// Initializes a new instance of the ConflictException class with serialized data
     /// </summary>
     /// <param name="info">The SerializationInfo that holds the serialized object data</param>
     /// <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
-    protected NotFoundException(SerializationInfo info, StreamingContext context)
+    protected ConflictException(SerializationInfo info, StreamingContext context)
         : base(info, context)
     {
         EntityName = info.GetString(nameof(EntityName));
-        EntityId = info.GetString(nameof(EntityId));
+        ConflictReason = info.GetString(nameof(ConflictReason));
     }
 
     /// <summary>
-    /// Gets the name of the entity that was not found
+    /// Gets the name of the entity that caused the conflict
     /// </summary>
     public string? EntityName { get; }
 
     /// <summary>
-    /// Gets the identifier used to look for the entity
+    /// Gets the reason for the conflict
     /// </summary>
-    public string? EntityId { get; }
+    public string? ConflictReason { get; }
 
     /// <summary>
     /// Sets the SerializationInfo with information about the exception
@@ -79,6 +79,6 @@ public class NotFoundException : ApplicationException
     {
         base.GetObjectData(info, context);
         info.AddValue(nameof(EntityName), EntityName);
-        info.AddValue(nameof(EntityId), EntityId);
+        info.AddValue(nameof(ConflictReason), ConflictReason);
     }
 }
