@@ -2,6 +2,7 @@ using Base.Application.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
+using UnauthorizedAccessException = Base.Application.Exceptions.UnauthorizedAccessException;
 
 namespace Base.API.Services.ExceptionHandling;
 
@@ -96,9 +97,6 @@ public sealed class ExceptionHandlingMiddleware : IMiddleware
         httpContext.Response.ContentType = "application/json";
         httpContext.Response.StatusCode = statusCode;
         await httpContext.Response.WriteAsync(JsonSerializer.Serialize(response));
-        //await httpContext.Response.CompleteAsync();
-        //httpContext.Features.Get<IConnectionLifetimeFeature>()?.Abort();
-        // httpContext.Abort();
     }
 
     private static IReadOnlyDictionary<string, string[]> GetErrors(Exception exception)
