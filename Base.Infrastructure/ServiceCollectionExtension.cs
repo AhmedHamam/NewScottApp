@@ -38,7 +38,7 @@ namespace Base.Infrastructure
                     }));
 
             // Register repositories
-            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddScoped(typeof(IBaseRepository<>), typeof(Repository<>));
 
             // Add other infrastructure services
             services.AddMemoryCache();
@@ -67,7 +67,7 @@ namespace Base.Infrastructure
             services.AddDbContext<ApplicationDbContext>(optionsAction);
 
             // Register repositories
-            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddScoped(typeof(IBaseRepository<>), typeof(Repository<>));
 
             // Add other infrastructure services
             services.AddMemoryCache();
