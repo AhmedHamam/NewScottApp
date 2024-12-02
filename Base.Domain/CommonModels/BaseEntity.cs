@@ -40,17 +40,22 @@ namespace Base.Domain.CommonModels
         /// <exception cref="InvalidOperationException">Thrown when entity is already deleted</exception>
         public void MarkAsDeleted(string deletedBy)
         {
-            if (string.IsNullOrWhiteSpace(deletedBy))
+            if (string.IsNullOrEmpty(deletedBy))
+            {
                 throw new ArgumentException("DeletedBy cannot be empty", nameof(deletedBy));
-            
+            }
+        
             if (IsDeleted)
+            {
                 throw new InvalidOperationException("Entity is already deleted");
-
+            }
+        
             IsDeleted = true;
             DeletedDate = DateTime.UtcNow;
             DeletedBy = new UserId(deletedBy);
-            
-            _domainEvents.Add(new EntityDeletedEvent(deletedBy));
+        
+            _domainEvents.Add(new EntityDeletedEvent(DeletedBy));
+            _domainEvents.Add(new EntityDeletedEvent(new UserId(deletedBy)));
         }
 
         /// <summary>
