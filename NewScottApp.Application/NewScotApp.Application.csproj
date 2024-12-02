@@ -6,12 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Base.Application\Base.Application.csproj" />
-    <ProjectReference Include="..\NewScottApp.Infrastructure\NewScotApp.Infrastructure.csproj" />
+    <Compile Remove="Commands\**" />
+    <EmbeddedResource Remove="Commands\**" />
+    <None Remove="Commands\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
+    <ProjectReference Include="..\Base.Application\Base.Application.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,16 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Domains\**" />
+    <Compile Remove="Enums\**" />
+    <EmbeddedResource Remove="Domains\**" />
+    <EmbeddedResource Remove="Enums\**" />
+    <None Remove="Domains\**" />
+    <None Remove="Enums\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Duende.IdentityServer.EntityFramework" Version="6.2.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Base.Domain\Base.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Domains\" />
-    <Folder Include="Enums\" />
   </ItemGroup>
 
 </Project>

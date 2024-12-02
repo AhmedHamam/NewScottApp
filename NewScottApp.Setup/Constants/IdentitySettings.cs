@@ -23,7 +23,7 @@ public static class IdentitySettings
     {
         return new LockoutOptions()
         {
-            DefaultLockoutTimeSpan = TimeSpan.FromHours(10),
+            DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10),
             MaxFailedAccessAttempts = configuration.GetAdminClientConfig().Jwt.MaxFailedAccessAttempts,
             AllowedForNewUsers = true,
         };

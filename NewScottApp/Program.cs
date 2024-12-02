@@ -1,14 +1,13 @@
 using Base.API.Services.ApiVersioning;
-using Base.API.Services.ExceptionHandling;
 using Base.API.Services.Swagger;
 using Base.Application;
+using Base.Application.Middleware;
 using Base.Infrastructure;
 using Configuration.Application;
 using Configuration.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.FileProviders;
 using NewScotApp.Getway.Helpers;
-using NewScotApp.Infrastructure;
 using NewScotApp.Setup;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,7 +43,8 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddBaseSwagger(builder.Configuration);
 builder.Services.AddBaseApiVersioning();
-builder.Services.AddExceptionHandling();
+//builder.Services.AddExceptionHandling();
+//builder.Services.AddExceptionHandler();
 
 #endregion
 
@@ -54,7 +54,7 @@ builder.Services.AddExceptionHandling();
 //builder.Services.AddHealthChecks().AddDbContextCheck<IdentityDatabaseContext>();
 builder.Services.AddIdentitySetup(builder.Configuration);
 builder.Services.AddIdentityApplication();
-builder.Services.AddIdentityInfrastructure(builder.Configuration);
+//builder.Services.AddIdentityInfrastructure(builder.Configuration);
 builder.Services.AddConfigurationsInfrastructure(builder.Configuration);
 
 #endregion
