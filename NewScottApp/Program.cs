@@ -6,6 +6,7 @@ using Base.Infrastructure;
 using Configuration.Application;
 using Configuration.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using NewScotApp.Getway.Helpers;
 using NewScotApp.Setup;
@@ -42,7 +43,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddBaseSwagger(builder.Configuration);
-builder.Services.AddBaseApiVersioning();
+//builder.Services.AddBaseApiVersioning();
 //builder.Services.AddExceptionHandling();
 //builder.Services.AddExceptionHandler();
 
